@@ -1,7 +1,7 @@
 site_name: Jenga
 site_url: https://jenga-pms.github.io/
 repo_url: https://github.com/Jenga-PMS/Jenga
-edit_uri: https://github.com/Jenga-PMS/Jenga-PMS.github.io/docs
+edit_uri: https://github.com/Jenga-PMS/Jenga-PMS.github.io/blob/main/docs/
 site_description: Jenga is a free, open-source project management and issue tracking tool, featuring an integrated AI agent 
 
 docs_dir: docs
