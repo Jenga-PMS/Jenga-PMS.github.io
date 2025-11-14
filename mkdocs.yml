@@ -8,8 +8,17 @@ docs_dir: docs
 nav:
   - Jenga: index.md
   - features.md
-  - installation.md
-  - architecture.md
+  - 'Installation':
+    - 'Overview': 'installation/index.md'
+    - 'Build using Docker': 'installation/DockerBuild.md'
+    - 'Build Backend': 'installation/BuildBackend.md'
+    - 'Build Frontend': 'installation/BuildFrontend.md'
+  - 'Architecture':
+    - 'Overview': 'architecture/index.md'
+    - 'Backend': 'architecture/backend.md'
+    - 'Frontend': 'architecture/frontend.md'
+    - 'Deployment': 'architecture/deployment.md'
+    - 'AI': 'architecture/ai.md'
   - about.md
 
 theme:
