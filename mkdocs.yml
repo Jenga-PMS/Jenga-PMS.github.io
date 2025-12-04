@@ -19,6 +19,7 @@ nav:
     - 'Frontend': 'architecture/frontend.md'
     - 'Deployment': 'architecture/deployment.md'
     - 'AI': 'architecture/ai.md'
+    - 'SonarQube': 'architecture/SonarQube/SonarQube.md'
   - about.md
 
 theme:
