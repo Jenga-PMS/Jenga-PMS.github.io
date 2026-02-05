@@ -28,6 +28,17 @@
           }
         }
       },
+      "ChatMessageDTO" : {
+        "type" : "object",
+        "properties" : {
+          "type" : {
+            "type" : "string"
+          },
+          "content" : {
+            "type" : "string"
+          }
+        }
+      },
       "ChatRequestDTO" : {
         "type" : "object",
         "properties" : {
@@ -58,6 +69,20 @@
           },
           "conversationId" : {
             "type" : "string"
+          }
+        }
+      },
+      "ChatSessionDTO" : {
+        "type" : "object",
+        "properties" : {
+          "sessionId" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "startedAt" : {
+            "$ref" : "#/components/schemas/LocalDateTime"
           }
         }
       },
@@ -553,6 +578,63 @@
           }
         },
         "summary" : "Chat",
+        "tags" : [ "Ai Resource" ]
+      }
+    },
+    "/api/ai/sessions" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "userId",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ChatSessionDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary" : "Get Sessions",
+        "tags" : [ "Ai Resource" ]
+      }
+    },
+    "/api/ai/sessions/{sessionId}/messages" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "sessionId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ChatMessageDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary" : "Get Session Messages",
         "tags" : [ "Ai Resource" ]
       }
     },
