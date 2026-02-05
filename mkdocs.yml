@@ -15,7 +15,9 @@ nav:
     - 'Build Frontend': 'installation/BuildFrontend.md'
   - 'Architecture':
     - 'Overview': 'architecture/index.md'
-    - 'Backend': 'architecture/backend.md'
+    - 'Backend': 
+      - 'Overview': 'architecture/backend.md'
+      - 'API Reference': 'architecture/api.md'
     - 'Frontend': 'architecture/frontend.md'
     - 'Deployment': 'architecture/deployment.md'
     - 'AI': 'architecture/ai.md'
@@ -70,3 +72,5 @@ markdown_extensions:
   - footnotes
   - md_in_html
 
+plugins:
+  - redoc-tag
