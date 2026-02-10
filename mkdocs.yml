@@ -17,6 +17,12 @@ nav:
     - 'Overview': 'architecture/index.md'
     - 'Backend': 
       - 'Overview': 'architecture/backend/overview.md'
+      - 'Architecture': 'architecture/backend/architecture.md'
+      - 'Data Models': 'architecture/backend/data_models.md'
+      - 'Endpoints': 'architecture/backend/endpoints.md'
+      - 'Authentication': 'architecture/backend/authentication.md'
+      - 'Configuration': 'architecture/backend/configuration.md'
+      - 'Limitations': 'architecture/backend/limitations.md'
       - 'API Reference': 'architecture/backend/api.md'
     - 'Frontend': 'architecture/frontend.md'
     - 'Deployment': 'architecture/deployment.md'
@@ -35,7 +41,6 @@ theme:
     - content.tooltips
     - navigation.footer
     - navigation.indexes
-    - navigation.sections
     - navigation.tabs
     - navigation.top
     - navigation.tracking
