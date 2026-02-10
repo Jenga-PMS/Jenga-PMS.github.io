@@ -16,8 +16,8 @@ nav:
   - 'Architecture':
     - 'Overview': 'architecture/index.md'
     - 'Backend': 
-      - 'Overview': 'architecture/backend.md'
-      - 'API Reference': 'architecture/api.md'
+      - 'Overview': 'architecture/backend/backend.md'
+      - 'API Reference': 'architecture/backend/api.md'
     - 'Frontend': 'architecture/frontend.md'
     - 'Deployment': 'architecture/deployment.md'
     - 'AI': 'architecture/ai.md'
