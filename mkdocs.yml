@@ -76,6 +76,9 @@ markdown_extensions:
   - admonition
   - footnotes
   - md_in_html
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
 
 plugins:
   - redoc-tag
