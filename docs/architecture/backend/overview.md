@@ -22,4 +22,6 @@ These are the main dependencies used to build the backend:
 - [x] **Search:** Search endpoint with filter
 - [ ] <s>Thousands of lines of commented source code (not just TODO and FIXME)</s>
 
+## Limitations
+
 For not implemented features and limitations see [here](limitations.md)
