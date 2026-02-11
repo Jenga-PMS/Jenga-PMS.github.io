@@ -26,10 +26,6 @@ block-beta
 
 ## Database
 
-Explain each architecture
--eg panache sample code also for rest sample request (Request and Response tabbed block)
-
-
 ## Source Code
 The architecture is directly reflected on to the soure code structure
 
