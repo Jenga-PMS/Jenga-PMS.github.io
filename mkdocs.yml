@@ -16,8 +16,14 @@ nav:
   - 'Architecture':
     - 'Overview': 'architecture/index.md'
     - 'Backend': 
-      - 'Overview': 'architecture/backend.md'
-      - 'API Reference': 'architecture/api.md'
+      - 'Overview': 'architecture/backend/overview.md'
+      - 'Architecture': 'architecture/backend/architecture.md'
+      - 'Data Models': 'architecture/backend/data_models.md'
+      - 'Endpoints': 'architecture/backend/endpoints.md'
+      - 'Authentication': 'architecture/backend/authentication.md'
+      - 'Configuration': 'architecture/backend/configuration.md'
+      - 'Limitations': 'architecture/backend/limitations.md'
+      - 'API Reference': 'architecture/backend/api.md'
     - 'Frontend': 'architecture/frontend.md'
     - 'Deployment': 'architecture/deployment.md'
     - 'AI': 'architecture/ai.md'
@@ -35,7 +41,6 @@ theme:
     - content.tooltips
     - navigation.footer
     - navigation.indexes
-    - navigation.sections
     - navigation.tabs
     - navigation.top
     - navigation.tracking
@@ -71,6 +76,9 @@ markdown_extensions:
   - admonition
   - footnotes
   - md_in_html
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
 
 plugins:
   - redoc-tag
