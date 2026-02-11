@@ -1,32 +1,35 @@
 # Architecture
 The backend is split in different layers:
 
+## Layers
+
 ``` mermaid
 block-beta
   columns 5
-
   A["Controller"]:5
-  space:5
-  B["Service"]:4 M["Mapper"]:1
-  space:5
-  C["JPA-Repository"]:4 E["Models"]:1
-  space:5
+  Arrow1<["&nbsp;&nbsp;&nbsp;"]>(y):5
+  B["Service"]:3 Arrow4<["&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"]>(x):1  M["Mapper"]:1
+  Arrow2<["&nbsp;&nbsp;&nbsp;"]>(y):5
+  C["JPA-Repository"]:3  Arrow5<["&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"]>(x):1 E["Models"]:1
+  Arrow3<["&nbsp;&nbsp;&nbsp;"]>(y):5
   D[("Database")]:5
 
-  A --> B
-  B --> C
-  C --> D
+  style Arrow1 fill:#D3D3D3,stroke:#666666
+  style Arrow2 fill:#D3D3D3,stroke:#666666
+  style Arrow3 fill:#D3D3D3,stroke:#666666
+  style Arrow4 fill:#D3D3D3,stroke:#666666
+  style Arrow5 fill:#D3D3D3,stroke:#666666
 ```
 
-## Controller
+### Controller
 
-## Service
+### Service
 
-## Repository
+### Repository
 
-## Database
+### Database
 
-## Source Code
+### Source Code
 The architecture is directly reflected on to the soure code structure
 
 ``` title="Structure of backend source code"
