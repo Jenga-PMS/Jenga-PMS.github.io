@@ -1,7 +1,9 @@
 # Technical Documentation Backend
 
 ## Overview
-The Jenga backend exposes a RESTful-API. It is build in Java using Quarkus as framework. Part of the Jenga-backend is the AI-assistant. The documentaton can be found [here](../ai.md).
+The backend of **Jenga** is responsible for the business logic and persistance of data. It exposes a simple REST-API for interaction, which can be found [here](api.md). Built in Java on Quarkus, Jenga is a cloud-native application benefiting from Quarkus's many advanced features.
+
+Jenga also has an AI-assistant. The relevant documentation for that can be found [here](../ai.md)
 
 ## Core Technologies
 These are the main dependencies used to build the backend:
@@ -12,6 +14,7 @@ These are the main dependencies used to build the backend:
 - **Persistence:** [Jakarta Persistence (JPA)](https://www.oracle.com/java/technologies/persistence-jsp.html) using [Hibernate](https://hibernate.org/)
 - **Security:** [SmallRye JWT](https://quarkus.io/guides/security-jwt)
 - **Database:** [PostgreSQL](https://www.postgresql.org/)
+- **Build Tool:** [Maven](https://maven.apache.org/)
 
 ## Current Features
 - [x] **Simple API:** Easy to use REST-API, see API-reference [here](api.md)
