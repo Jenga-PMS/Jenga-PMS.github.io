@@ -25,7 +25,20 @@ nav:
       - 'API Reference': 'architecture/backend/api.md'
     - 'Frontend': 'architecture/frontend.md'
     - 'Deployment': 'architecture/deployment.md'
-    - 'AI': 'architecture/ai.md'
+    - 'AI':
+      - 'Overview': 'architecture/ai/overview.md'
+      - 'Technology Stack': 'architecture/ai/technology_stack.md'
+      - 'Architecture':
+        - 'Overview': 'architecture/ai/architecture.md'
+        - 'Endpoints':
+          - 'Chat Endpoint': 'architecture/ai/endpoints/chat.md'
+          - 'Get Sessions': 'architecture/ai/endpoints/sessions.md'
+          - 'Get Session Messages': 'architecture/ai/endpoints/messages.md'
+      - 'Use-Cases': 'architecture/ai/use_cases.md'
+      - 'Configuration': 'architecture/ai/configuration.md'
+      - 'Evaluation & Benchmarks': 'architecture/ai/evaluation.md'
+      - 'Problems': 'architecture/ai/problems.md'
+      - 'Other': 'architecture/ai/other.md'
     - 'SonarQube': 'architecture/SonarQube/SonarQube.md'
     - 'Documentation': 'architecture/documentation.md'
   - about.md
