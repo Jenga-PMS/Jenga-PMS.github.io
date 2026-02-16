@@ -19,7 +19,6 @@ nav:
       - 'Overview': 'architecture/backend/overview.md'
       - 'Architecture': 'architecture/backend/architecture.md'
       - 'Data Models': 'architecture/backend/data_models.md'
-      - 'Endpoints': 'architecture/backend/endpoints.md'
       - 'Authentication': 'architecture/backend/authentication.md'
       - 'Configuration': 'architecture/backend/configuration.md'
       - 'Limitations': 'architecture/backend/limitations.md'
@@ -28,6 +27,7 @@ nav:
     - 'Deployment': 'architecture/deployment.md'
     - 'AI': 'architecture/ai.md'
     - 'SonarQube': 'architecture/SonarQube/SonarQube.md'
+    - 'Documentation': 'architecture/documentation.md'
   - about.md
 
 theme:
@@ -83,6 +83,11 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tasklist:
       custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+     linenums: true
+
 
 plugins:
   - redoc-tag
