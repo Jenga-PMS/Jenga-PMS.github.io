@@ -1,5 +1,7 @@
 # Data models
+As Jenga is a project management tool for issues, everything is organized in projects. It acts as a container for tickets and other project relevant data. Within a project, user can create tickets. Tickets also have different relations with other objects, e.g. a ticket can have comments.
 
+This diagramm shows a simplified version of the relations between business objects:
 ``` mermaid
 erDiagram
     PROJECT ||--o{ TICKET : contains
@@ -9,10 +11,26 @@ erDiagram
     TICKET ||--o{ ACCEPTANCE_CRITERIA : has
 ```
 
+In the Jenga code, these relations are established with JPA. Jakarta has different annotations to create relations between different entities.
+
+Here is an example relation between projects and tickets:
+=== "Ticket Entity"
+    ```java
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "project_id")
+    private Project project;
+    ```
+
+=== "Project Entity"
+    ```java
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Ticket> tickets = new ArrayList<>();
+    ```
+With `@JoinColumn(name = "project_id")`, the actual foreign key column is defined in the database table ticket.
 
 
-
-
+### Full Jenga object relations
+The diagram shows relationships of database tables established through primary and foreign keys.
 ``` mermaid
 erDiagram
     PROJECTS ||--o{ TICKETS : "contains"

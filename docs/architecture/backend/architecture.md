@@ -49,7 +49,13 @@ public class TicketResource {
 4. Call method of the service layer for the actual business logic
 
 ### Service
-Service layer is responsible for the actual business logic. This layer also maps between DTOs and Entities.
+Service layer is responsible for the actual business logic. It performs calculations, validations independent of how the the actual incoming request was served. It uses mappers to convert between DTOs and Entities. The purpose is to decouple how data is persisted and how it is served through the API. It also protects sensitive data from being exposed.
+
+This ensures:
+
+- [x] **Decoupling:** Separates internal database logic from the external interface
+- [x] **Security:** Prevents internal fields (e.g., passwords) from being exposed
+- [x] **Stability:** Ensures database changes don't break the public API
 
 ``` java title="Example"
 @ApplicationScoped
@@ -71,9 +77,12 @@ public class TicketService {
 2. Call method of repository layer to save entity
 3. Return response DTO
 
+To retreive data of the database, the service layer is accessing the repository layer.
+
 ### Repository
-This layer abstracts all database interaction. It has no logic, it sole purpose is to perform CRUD operations on the database.
-With Panache, it is possible to write a short expression like `find("project.id", projectId)` and it will automatically generates the corresponding SQL query.
+The repository layer abstracts all database interaction. It sole purpose is to perform operations on the database. It uses Jakarta Persistence (JPA) to abstractes from the complexity of SQL or JPA queries and database drivers (JDBC) from the service layer. It remains database-independent, unless dialect-specific native queries are used.
+
+Panache sits on top of this layer to reduce boilerplate code. With Panache, it is possible to write a short expression like `find("project.id", projectId)` and it will automatically generates the corresponding SQL query. It aims to reduce boilerplate-code.
 
 ``` java title="Example"
 public class TicketRepository implements PanacheRepository<Ticket> {
