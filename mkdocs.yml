@@ -23,7 +23,12 @@ nav:
       - 'Configuration': 'architecture/backend/configuration.md'
       - 'Limitations': 'architecture/backend/limitations.md'
       - 'API Reference': 'architecture/backend/api.md'
-    - 'Frontend': 'architecture/frontend.md'
+    - 'Frontend':
+      - 'Overview': 'architecture/frontend.md'
+      - 'System Design': 'architecture/frontend/system_design.md'
+      - 'State and Data Flow': 'architecture/frontend/state_data_flow.md'
+      - 'API Integration': 'architecture/frontend/api_integration.md'
+      - 'UI, i18n and PWA': 'architecture/frontend/ui_i18n_pwa.md'
     - 'Deployment': 'architecture/deployment.md'
     - 'AI':
       - 'Overview': 'architecture/ai/overview.md'
