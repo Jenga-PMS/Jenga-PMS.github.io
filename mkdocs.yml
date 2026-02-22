@@ -91,3 +91,6 @@ markdown_extensions:
 
 plugins:
   - redoc-tag
+  - git-committers:
+      repository: Jenga-PMS/Jenga-PMS.github.io
+      branch: main
