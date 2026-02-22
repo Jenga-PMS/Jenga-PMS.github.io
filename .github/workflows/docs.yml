@@ -31,6 +31,6 @@ jobs:
           path: ~/.cache 
           restore-keys: |
             mkdocs-material-
-      - run: pip install mkdocs-material mkdocs-redoc-tag
+      - run: pip install -r requirements.txt
       - run: mkdocs gh-deploy --force
 
