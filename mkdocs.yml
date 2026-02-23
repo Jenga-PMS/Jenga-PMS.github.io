@@ -19,7 +19,6 @@ nav:
       - 'Architecture': 'architecture/backend/architecture.md'
       - 'Data Models': 'architecture/backend/data_models.md'
       - 'Authentication': 'architecture/backend/authentication.md'
-      - 'Configuration': 'architecture/backend/configuration.md'
       - 'Limitations': 'architecture/backend/limitations.md'
       - 'API Reference': 'architecture/backend/api.md'
     - 'Frontend': 'architecture/frontend.md'
