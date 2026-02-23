@@ -9,7 +9,7 @@ State is represented through Solid reactive primitives with provider-scoped owne
 | Layer | Owner | Typical state |
 |---|---|---|
 | UI-global | `LayoutProvider` | sidebar visibility |
-| Authentication | `AuthProvider` | login result, JWT token, session status |
+| Authentication | `AuthProvider` | JWT session state, login/register loading and error signals |
 | User domain | `UserProvider` | current user resource |
 | Project domain | `ProjectProvider` | projects, tickets, selected project/ticket |
 | Local component | page/component signals | dialogs, form feedback, transient inputs |
@@ -19,7 +19,7 @@ The runtime behavior is built from four reactive primitives:
 
 - **`createSignal`**: mutable local state source used for UI events and provider-owned state values.
 - **`createMemo`**: derived state that recalculates only when dependent signals/resources change.
-- **`createResource`**: async reactive data source tied to a key function (for example project id or login state).
+- **`createResource`**: async reactive data source tied to a key function (for example project id or session state).
 - **`createEffect`**: side-effect hook that reacts to dependency changes (for cleanup, synchronization, or state reset).
 
 Providers compose these primitives to expose stable read/write interfaces to components.
@@ -29,8 +29,10 @@ SolidJS is a reactive UI framework that uses fine-grained dependency tracking. I
 
 In this frontend, SolidJS is used primarily for:
 - provider-owned state and derived values (signals and memos)
-- reactive async data loading (resources keyed by auth state or project selection)
+- reactive async data loading (resources keyed by session state or project selection)
 - effectful cleanup and synchronization on state transitions (effects)
+
+In the current implementation, `AuthProvider` is action-driven (`login`, `register`, `logout`) and signal-based (`jwt`, loading/error signals). `createResource` is used by domain providers (`UserProvider`, `ProjectProvider`, `AiProvider`) for keyed data loading.
 
 ### Dependency Tracking and Updates
 Solid tracks dependencies at the level of individual reads.
@@ -83,15 +85,16 @@ The next graph focuses on the **reactive triggers** used for domain loading and 
 
 ```mermaid
 graph TD
-    loginReq["AuthProvider: loginRequestDTO (signal)"] --> loginRes["AuthProvider: loginResult (resource)"]
-    regReq["AuthProvider: registerRequestDTO (signal)"] --> regRes["AuthProvider: registerResult (resource)"]
-    regRes --> autoLogin["AuthProvider: register->login effect"]
-    autoLogin --> loginRes
+    loginUI["UI intent: login submit"] --> loginAction["AuthProvider.login(request)"]
+    registerUI["UI intent: register submit"] --> registerAction["AuthProvider.register(request)"]
 
-    loginRes --> loggedIn["AuthProvider: isLoggedIn (memo)"]
-    loggedIn --> openapi["OpenAPI runtime: TOKEN/USERNAME"]
+    loginAction --> setSession["AuthProvider.setSession(jwt): OpenAPI first, then jwt signal"]
+    registerAction --> setSession
 
-    loggedIn --> userKey["UserProvider: key = jwt().username"]
+    setSession --> jwtState["AuthProvider.jwt (signal)"]
+    jwtState --> loggedIn["AuthProvider: isLoggedIn (memo)"]
+
+    jwtState --> userKey["UserProvider: key = jwt().username"]
     userKey --> userRes["UserProvider: user (resource)"]
 
     loggedIn --> projectsKey["ProjectProvider: key = isLoggedIn()"]
@@ -124,15 +127,16 @@ This graph focuses on how authentication becomes the activation gate for the use
 
 ```mermaid
 graph TD
-    loginReq["AuthProvider: loginRequestDTO (signal)"] --> loginRes["AuthProvider: loginResult (resource)"]
-    regReq["AuthProvider: registerRequestDTO (signal)"] --> regRes["AuthProvider: registerResult (resource)"]
-    regRes --> autoLogin["AuthProvider: register->login (effect)"]
-    autoLogin --> loginRes
+    loginUI["UI intent: login submit"] --> loginAction["AuthProvider.login(request)"]
+    registerUI["UI intent: register submit"] --> registerAction["AuthProvider.register(request)"]
 
-    loginRes --> loggedIn["AuthProvider: isLoggedIn (memo)"]
-    loggedIn --> openapi["OpenAPI runtime: TOKEN/USERNAME"]
+    loginAction --> setSession["AuthProvider.setSession(jwt): OpenAPI first, then jwt signal"]
+    registerAction --> setSession
 
-    loggedIn --> userKey["UserProvider: key = jwt().username"]
+    setSession --> jwtState["AuthProvider.jwt (signal)"]
+    jwtState --> loggedIn["AuthProvider: isLoggedIn (memo)"]
+
+    jwtState --> userKey["UserProvider: key = jwt().username"]
     userKey --> userRes["UserProvider: user (resource)"]
 
     loggedIn --> projectsKey["ProjectProvider: key = isLoggedIn()"]
@@ -142,7 +146,7 @@ graph TD
 ```
 
 Notes:
-- The OpenAPI runtime assignment is a side effect of evaluating `isLoggedIn()`; it is not a separate fetch.
+- OpenAPI runtime credentials are assigned synchronously before `jwt` is published to reactive consumers.
 - Domain resources are keyed so "logged out" naturally converges to inactive resources.
 
 ### Project Selection to Ticket/Label Loading
@@ -206,7 +210,8 @@ graph TD
 ## Reactive Domain Loading
 Domain loading is driven by a small set of reactive keys:
 
-- `AuthProvider.isLoggedIn()` activates downstream resources and also publishes auth material into the OpenAPI runtime.
+- `AuthProvider.isLoggedIn()` activates downstream resources.
+- `AuthProvider` publishes auth material into the OpenAPI runtime as part of session updates (`login`, `register`, `logout`).
 - `UserProvider` is keyed by the current username derived from the JWT.
 - `ProjectProvider` loads the project list while logged in and refines ticket loading by selected project identifier.
 
@@ -217,13 +222,13 @@ The following table lists the major runtime resource nodes and the key that cont
 
 | Provider | Resource | Key concept | Fetch effect |
 |---|---|---|---|
-| `AuthProvider` | `loginResult` | `loginRequestDTO` signal | POST login, publish JWT into `OpenAPI.TOKEN`/`OpenAPI.USERNAME` via memo |
-| `AuthProvider` | `registerResult` | `registerRequestDTO` signal | POST registration, then effect assigns result into `loginResult` |
 | `UserProvider` | `user` | `jwt().username` | GET user profile for current session user |
 | `ProjectProvider` | `projects` | `isLoggedIn()` boolean gate | GET project list for current session |
 | `ProjectProvider` | `tickets` | selected project identifier | GET all tickets for current project |
 | `ProjectProvider` | `availableLabels` | selected project identifier | GET labels for current project |
 | `AiProvider` | `response` | `message` signal | POST chat request with (user, project, ticket) context |
+
+`AuthProvider` is a non-resource orchestrator: it performs action-based auth requests and updates session state signals.
 
 The important property is that a missing key does not throw. It represents “inactive domain”, so a resource naturally settles into `undefined` and the UI displays empty state or placeholders.
 
@@ -231,14 +236,14 @@ The important property is that a missing key does not throw. It represents “in
 
 ### Authentication Flow
 1. User submits credentials.
-2. `AuthProvider` triggers login resource.
-3. On success, token and username are assigned to OpenAPI runtime config.
+2. `AuthProvider` executes `login(request)` or `register(request)` action.
+3. On success, session is applied synchronously (`OpenAPI.TOKEN`/`OpenAPI.USERNAME` first, then `jwt` signal).
 4. `isLoggedIn` derivations activate downstream resources.
-5. `UserProvider` and `ProjectProvider` begin fetching data.
+5. `UserProvider` and `ProjectProvider` begin fetching data with active auth material.
 
 On logout:
-- login resource is reset
-- OpenAPI token is removed implicitly via memo branch
+- session signals are reset
+- OpenAPI token/username are removed synchronously via logout session update
 - user/project resources are cleaned by dependent effects
 
 ### Session Cleanup (Logout Reset)

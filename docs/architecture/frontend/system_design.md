@@ -49,7 +49,8 @@ Rationale:
 - `ThemeProvider` (SUID Material) is outermost so UI components share one theme configuration.
 - `LayoutProvider` is early so shell controls (sidebar open/closed) are globally available to the shell and the guided tour.
 - `I18nProvider` wraps UI and the tour so translated labels exist before a tour step is constructed or rendered.
-- `AuthProvider` owns the auth resource and writes token/username into the OpenAPI runtime configuration.
+- `AuthProvider` owns the action-based auth/session lifecycle and writes token/username into the OpenAPI runtime configuration.
+- Auth session publication follows a strict ordering invariant: OpenAPI credentials are written before auth state is published to reactive consumers.
 - `UserProvider` and `ProjectProvider` consume auth state to load domain data only for an active session.
 - `GuideProvider` depends on layout and i18n to navigate routes and target mounted, translated UI anchors reliably.
 - `AiProvider` depends on auth/user/project state to include current context (user, project, selected ticket) in chat requests.

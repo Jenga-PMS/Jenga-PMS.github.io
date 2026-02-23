@@ -24,6 +24,7 @@ Characteristics:
 At runtime:
 - `OpenAPI.BASE` is set from browser origin
 - auth token/user are assigned by `AuthProvider`
+- `AuthProvider` applies auth material synchronously during session updates (`login`, `register`, `logout`): `OpenAPI.TOKEN`/`OpenAPI.USERNAME` are written before auth state is published to reactive consumers
 - Vite dev proxy forwards `/api` to backend (`localhost:8080`)
 
 ## Request Mapping Logic
@@ -75,3 +76,4 @@ On failure:
 - one centralized write orchestrator (`ProjectProvider`)
 - consistent mutation semantics from all entry points (form, DnD, dialogs)
 - strong typing and enum safety via generated DTO client
+- auth orchestration is signal/action-based in `AuthProvider`, while the generated OpenAPI client remains unchanged
