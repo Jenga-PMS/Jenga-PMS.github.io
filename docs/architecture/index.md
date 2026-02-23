@@ -9,7 +9,7 @@ An overview of our system architecture.
 
 ## **Backend**
 
-Documentation for the Jenga backend can be found [here](backend/overview/)
+Documentation for the Jenga backend can be found [here](backend/overview.md)
 
 ---
 
