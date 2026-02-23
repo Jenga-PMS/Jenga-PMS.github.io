@@ -1,3 +1,45 @@
+## Relevant Code
+
+```
+.
+├── dto
+│   ├── GitHubIssueDTO.java
+│   ├── ImportReportDTO.java
+│   ├── ImportStatusDTO.java
+│   ├── mcpserver
+│   │   ├── AskAboutTicketResponseDTO.java
+│   │   ├── ChatMessageDTO.java
+│   │   ├── ChatRequestDTO.java
+│   │   ├── ChatResponseDTO.java
+│   │   ├── ChatSessionDTO.java
+│   │   ├── SearchResultItemDTO.java
+│   │   └── WebSearchResponseDTO.java
+├── model
+│   ├── ChatMemoryEntity.java
+│   ├── ChatSessionEntity.java
+│   ├── MessageType.java
+├── rest
+│   ├── AiResource.java
+│   ├── ImportResource.java
+├── service
+│   ├── ImportService.java
+│   ├── mcpserver
+│   │   ├── AiService.java
+│   │   ├── ChatMemoryProvider.java
+│   │   ├── ChatRequestContext.java
+│   │   ├── DatabaseChatMemoryStore.java
+│   │   └── GoogleSearchApi.java
+└── tool
+    ├── AskAboutTicketTool.java
+    ├── CreateTicketTool.java
+    ├── DeleteTicketTool.java
+    ├── EditTicketTool.java
+    ├── GetAllProjectsTool.java
+    ├── GetAllUsersTool.java
+    ├── SearchTicketTool.java
+    └── WebSearchTool.java
+```
+
 ## AI Agent Goals
 
 ### Ticket Management

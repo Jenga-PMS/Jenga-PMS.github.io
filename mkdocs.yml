@@ -25,7 +25,7 @@ nav:
     - 'Frontend': 'architecture/frontend.md'
     - 'Deployment': 'architecture/deployment.md'
     - 'AI Agent':
-      - 'Overview': 'architecture/ai/index.md'
+      - 'Overview': 'architecture/ai/overview.md'
       - 'Technology Stack': 'architecture/ai/technology_stack.md'
       - 'Architecture':
         - 'Overview': 'architecture/ai/architecture.md'
@@ -89,6 +89,7 @@ theme:
 markdown_extensions:
   - abbr
   - admonition
+  - pymdownx.details
   - footnotes
   - md_in_html
   - pymdownx.superfences:
