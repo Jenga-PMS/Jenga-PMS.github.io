@@ -1,4 +1,4 @@
-# Jenga Application — Deployment Guide generated with help of Claude Sonnet 4.6
+# Jenga Application — Deployment Guide
 
 **Who is this guide for?**  
 This document is designed for anyone who needs to deploy the Jenga application — even if you have little or no experience with Docker or server infrastructure. It walks you through every prerequisite, every configuration file, and every command you need to get the system running from scratch.
@@ -444,3 +444,5 @@ ENTRYPOINT ["java", "-Dquarkus.http.host=0.0.0.0", "-Dquarkus.mcp.server.stdio.e
 - **Port 5005 (remote debugging):** To enable, add `"5005:5005"` to the backend's `ports` in `docker-compose.yml` and add `-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005` to the `ENTRYPOINT` JVM flags.
 
 ---
+
+**this deployment guide is made by hangzhou with the help of claude sonnet 4.6**
