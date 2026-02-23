@@ -36,12 +36,6 @@
 
     [:octicons-arrow-right-24: Learn more](https://jenga-pms.github.io/architecture/ai/examples/)
 
--   :material-clock-fast:{ .lg .middle } __Cloud Ready__
-
-    ---
-
-    Developing for the cloud, powered by Quarkus.
-
 -   :material-hand-pointing-up:{ .lg .middle } __Ease of Use__ 
 
     ---
