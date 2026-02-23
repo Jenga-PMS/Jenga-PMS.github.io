@@ -12,6 +12,7 @@ nav:
     - 'Build using Docker': 'installation/DockerBuild.md'
     - 'Build Backend': 'installation/BuildBackend.md'
     - 'Build Frontend': 'installation/BuildFrontend.md'
+    - 'Deployment Guide': 'Deployment/Deployment_Guide.md'
   - 'Architecture':
     - 'Overview': 'architecture/index.md'
     - 'Backend': 
