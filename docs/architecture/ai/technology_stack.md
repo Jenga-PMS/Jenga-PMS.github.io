@@ -1,4 +1,5 @@
 ### MCP (Model Context Protocol)
+
 **What is MCP?**
 
 MCP is an open standard protocol that standardizes the connection between AI models (clients) and external data sources or tools (servers).
@@ -30,20 +31,19 @@ LangChain4j is a high-level Java abstraction layer for LLM application developme
 **Why did I choose it?**
 
 * **Tech Stack Consistency:** It integrates directly with our existing Java infrastructure (Quarkus), eliminating the operational overhead of maintaining a separate Python/Node.js microservice for AI logic.
-* **Type Safety:** Java’s static typing reduces runtime errors when handling structured outputs from LLMs (e.g., deserializing JSON responses into POJOs).
+* **Type Safety:** Java's static typing reduces runtime errors when handling structured outputs from LLMs (e.g., deserializing JSON responses into POJOs).
 * **Vendor Agnosticism:** It abstracts the underlying API calls, allowing us to switch model providers without refactoring business logic.
 
 **Core features:**
 
 1. **Unified APIs:**
+    * Provides a standardized interface (`ChatLanguageModel`, `EmbeddingModel`) across different providers.
+    * This abstraction enables "hot-swapping" of models (e.g., moving from OpenAI GPT-4 to a local Ollama instance) via configuration changes rather than code rewrites.
 
-	* Provides a standardized interface (`ChatLanguageModel`, `EmbeddingModel`) across different providers.
-	* This abstraction enables "hot-swapping" of models (e.g., moving from OpenAI GPT-4 to a local Ollama instance) via configuration changes rather than code rewrites.
 2. **Toolbox for LLM integration:**
-
-	* **Tools (Function Calling):** Uses the `@Tool` annotation to expose Java methods to the LLM. The framework handles the serialization of method signatures into the LLM’s schema (e.g., OpenAI Functions API) and the subsequent execution of the method when selected by the model.
-	* **Agents (AI Services):** The `AiServices` API creates dynamic proxies that orchestrate the interaction between the LLM, chat memory, and tools. This implements the "ReAct" (Reasoning and Acting) pattern, allowing the model to autonomously plan and execute tasks.
-	* **Chat Memory Management:** Components like `MessageWindowChatMemory` or `TokenWindowChatMemory` manage the context window. They handle the persistence and eviction of conversation history to ensure the payload stays within the model's token limits.
+    * **Tools (Function Calling):** Uses the `@Tool` annotation to expose Java methods to the LLM. The framework handles the serialization of method signatures into the LLM's schema (e.g., OpenAI Functions API) and the subsequent execution of the method when selected by the model.
+    * **Agents (AI Services):** The `AiServices` API creates dynamic proxies that orchestrate the interaction between the LLM, chat memory, and tools. This implements the "ReAct" (Reasoning and Acting) pattern, allowing the model to autonomously plan and execute tasks.
+    * **Chat Memory Management:** Components like `MessageWindowChatMemory` or `TokenWindowChatMemory` manage the context window. They handle the persistence and eviction of conversation history to ensure the payload stays within the model's token limits.
 
 **What do we use?**
 
