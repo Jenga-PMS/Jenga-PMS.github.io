@@ -7,7 +7,6 @@ site_description: Jenga is a free, open-source project management and issue trac
 docs_dir: docs
 nav:
   - Jenga: index.md
-  - features.md
   - 'Installation':
     - 'Overview': 'installation/index.md'
     - 'Build using Docker': 'installation/DockerBuild.md'
@@ -25,20 +24,23 @@ nav:
       - 'API Reference': 'architecture/backend/api.md'
     - 'Frontend': 'architecture/frontend.md'
     - 'Deployment': 'architecture/deployment.md'
-    - 'AI':
-      - 'Overview': 'architecture/ai/overview.md'
+    - 'AI Agent':
+      - 'Overview': 'architecture/ai/index.md'
       - 'Technology Stack': 'architecture/ai/technology_stack.md'
       - 'Architecture':
         - 'Overview': 'architecture/ai/architecture.md'
+        - 'Tools': 'architecture/ai/architecture/Tools.md'
         - 'Endpoints':
-          - 'Chat Endpoint': 'architecture/ai/endpoints/chat.md'
-          - 'Get Sessions': 'architecture/ai/endpoints/sessions.md'
-          - 'Get Session Messages': 'architecture/ai/endpoints/messages.md'
-      - 'Use-Cases': 'architecture/ai/use_cases.md'
+          - 'Chat Endpoint': 'architecture/ai/architecture/endpoints/chat.md'
+          - 'Get Sessions': 'architecture/ai/architecture/endpoints/sessions.md'
+          - 'Get Session Messages': 'architecture/ai/architecture/endpoints/messages.md'
+      - 'Examples': 'architecture/ai/examples.md'
       - 'Configuration': 'architecture/ai/configuration.md'
-      - 'Evaluation & Benchmarks': 'architecture/ai/evaluation.md'
+      - 'Setup': 'architecture/ai/setup.md'
+      - 'GitHub Import': 'architecture/ai/github_import.md'
       - 'Problems': 'architecture/ai/problems.md'
-      - 'Other': 'architecture/ai/other.md'
+      - 'AI Usage': 'architecture/ai/ai_usage.md'
+    - 'Teamwork & Project Structure': 'architecture/ai/teamwork&projectstructure.md'
     - 'SonarQube': 'architecture/SonarQube/SonarQube.md'
     - 'Documentation': 'architecture/documentation.md'
   - about.md
