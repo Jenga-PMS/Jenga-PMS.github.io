@@ -445,4 +445,4 @@ ENTRYPOINT ["java", "-Dquarkus.http.host=0.0.0.0", "-Dquarkus.mcp.server.stdio.e
 
 ---
 
-**this deployment guide is made by hangzhou with the help of claude sonnet 4.6. for further support feel free to reach out to me**
+**this deployment guide is made by hangzhou with the help of claude sonnet 4.6. for further support feel free to reach out to our team**
