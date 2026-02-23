@@ -19,6 +19,7 @@ The frontend is implemented as a SolidJS single-page application with a generate
 ## Read This Section Efficiently
 This page is an index. Detailed topics are documented separately:
 
+- [Web App Walkthrough](frontend/walkthrough.md): user-facing walkthrough of the UI and typical workflows
 - [System Design](frontend/system_design.md): static structure, provider order, module boundaries
 - [State and Data Flow](frontend/state_data_flow.md): reactive state lifecycle, update flows, rollback behavior
 - [API Integration](frontend/api_integration.md): OpenAPI generation, update orchestration, relation sync logic

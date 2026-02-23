@@ -23,6 +23,7 @@ nav:
       - 'API Reference': 'architecture/backend/api.md'
     - 'Frontend':
       - 'Overview': 'architecture/frontend.md'
+      - 'Web App Walkthrough': 'architecture/frontend/walkthrough.md'
       - 'System Design': 'architecture/frontend/system_design.md'
       - 'State and Data Flow': 'architecture/frontend/state_data_flow.md'
       - 'API Integration': 'architecture/frontend/api_integration.md'
