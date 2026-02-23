@@ -9,7 +9,7 @@ An overview of our system architecture.
 
 ## **Backend**
 
-Details about the server-side logic, APIs, and database.
+Documentation for the Jenga backend can be found [here](backend/overview/)
 
 ---
 
