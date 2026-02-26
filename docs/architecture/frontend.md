@@ -23,6 +23,7 @@ This page is an index. Detailed topics are documented separately:
 - [System Design](frontend/system_design.md): static structure, provider order, module boundaries
 - [State and Data Flow](frontend/state_data_flow.md): reactive state lifecycle, update flows, rollback behavior
 - [API Integration](frontend/api_integration.md): OpenAPI generation, update orchestration, relation sync logic
+- [Testing](frontend/testing.md): frontend test setup, run commands, and testing libraries
 - [UI and PWA](frontend/ui_i18n_pwa.md): shell rendering model, component responsibilities, PWA baseline
 - [Internationalization (i18n)](frontend/i18n.md): initialization lifecycle, translation boundaries, localization behavior
 - [Guided Tour](frontend/guided_tour.md): route-aware Shepherd orchestration, anchor strategy, failure modes

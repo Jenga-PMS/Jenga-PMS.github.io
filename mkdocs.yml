@@ -28,6 +28,7 @@ nav:
       - 'System Design': 'architecture/frontend/system_design.md'
       - 'State and Data Flow': 'architecture/frontend/state_data_flow.md'
       - 'API Integration': 'architecture/frontend/api_integration.md'
+      - 'Testing': 'architecture/frontend/testing.md'
       - 'UI and PWA': 'architecture/frontend/ui_i18n_pwa.md'
       - 'Internationalization (i18n)': 'architecture/frontend/i18n.md'
       - 'Guided Tour': 'architecture/frontend/guided_tour.md'
